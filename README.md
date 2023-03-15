@@ -6,5 +6,5 @@
 | ------- | -------| ---------| ----- | -------- | 
 | Profile | <img width="200px" src="https://avatars.githubusercontent.com/u/52391627?v=4">    | <img width="200px" src="https://avatars.githubusercontent.com/u/84130518?v=4" />  | <img width="200px" src=""/>    | <img width="200px" src="https://avatars.githubusercontent.com/u/76465887?v=4"/>  |
 | Role    | Team Leader, Backend | Backend  | Backend   | Backend |
-| gitHub  | [gilyeon00](https://github.com/gilyeon00) | [goldapple-ce](https://github.com/goldapple-ce)   | [](https://github.com/)    |  [snake7667] (https://github.com/snake7667) |
+| gitHub  | [gilyeon00](https://github.com/gilyeon00) | [goldapple-ce](https://github.com/goldapple-ce)   | [](https://github.com/)    |  [snake7667](https://github.com/snake7667) |
 
