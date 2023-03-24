@@ -5,10 +5,10 @@ services:
     image: mysql/mysql-server:8.0
     tty: true
     environment:
-      MYSQL_ROOT_PASSWORD: port0429
-      MYSQL_USER: port
-      MYSQL_PASSWORD: port0429
-      MYSQL_DATABASE: voilio
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       TZ: Asia/Seoul
     volumes:
       - mysql-data:/var/lib/mysql
@@ -40,8 +40,8 @@ services:
       - db-mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db-mysql:3306/voilio
-      SPRING_DATASOURCE_USERNAME: port
-      SPRING_DATASOURCE_PASSWORD: port0429
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 
 
