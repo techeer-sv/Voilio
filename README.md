@@ -8,3 +8,7 @@
 | Role    | Team Leader, Backend | Backend  | Backend   | Backend |
 | gitHub  | [gilyeon00](https://github.com/gilyeon00) | [goldapple-ce](https://github.com/goldapple-ce)   | [kimich1218](https://github.com/kimich1218)    |  [snake7667](https://github.com/snake7667) |
 
+## 실행 방법
+```
+git clone --recursive https://github.com/techeer-sv/Voilio.git
+```
