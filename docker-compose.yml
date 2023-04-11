@@ -29,6 +29,14 @@ services:
       - ADMINER_DEFAULT_SERVER=db-mysql
       - ADMINER_DESIGN=hydra
       - ADMINER_PLUGINS=tables-filter tinymce
+  web:
+    image: nginx
+    ports:
+      - 80:80
+    volumes: # 호스트 디렉터리의 파일과 도커 컨테이너의 파일을 매핑한다.
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - backend
 
   backend:
     container_name: backend-springboot
@@ -36,14 +44,13 @@ services:
     restart: always
     ports:
       - "8080:8080"
-#    depends_on:
-#      - db-mysql
+    #    depends_on:
+    #      - db-mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db-mysql:3306/voilio
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-
 
   frontend:
     container_name: frontend-react
