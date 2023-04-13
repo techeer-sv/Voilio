@@ -29,14 +29,7 @@ services:
       - ADMINER_DEFAULT_SERVER=db-mysql
       - ADMINER_DESIGN=hydra
       - ADMINER_PLUGINS=tables-filter tinymce
-  web:
-    image: nginx
-    ports:
-      - 80:80
-    volumes: # 호스트 디렉터리의 파일과 도커 컨테이너의 파일을 매핑한다.
-      - ./nginx/conf.d:/etc/nginx/conf.d
-    depends_on:
-      - backend
+
 
   backend:
     container_name: backend-springboot
@@ -59,7 +52,20 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend/:/frontend
+      - build_folder:/frontend/build
       - ./frontend/node_modules/:/frontend/node_modules
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes: # 호스트 디렉터리의 파일과 도커 컨테이너의 파일을 매핑한다.
+      - build_folder:/var/www/frontend
+    depends_on:
+      - backend
+      - frontend
+    restart: always
 
 volumes:
   mysql-data:
+  build_folder:
