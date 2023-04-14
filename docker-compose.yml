@@ -57,6 +57,8 @@ services:
 
   nginx:
     image: nginx
+    container_name: nginx
+    build: ./nginx
     ports:
       - "80:80"
     volumes: # 호스트 디렉터리의 파일과 도커 컨테이너의 파일을 매핑한다.
