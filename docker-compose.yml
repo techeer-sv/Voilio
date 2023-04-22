@@ -19,6 +19,8 @@ services:
       - '3306:3306'
     expose:
       - "3306"
+    networks:
+      - app-tier
 
   database-adminer:
     container_name: db-adminer
@@ -29,14 +31,16 @@ services:
       - ADMINER_DEFAULT_SERVER=db-mysql
       - ADMINER_DESIGN=hydra
       - ADMINER_PLUGINS=tables-filter tinymce
+    networks:
+      - app-tier
 
 
   backend:
     container_name: backend-springboot
     build: ./backend/
     restart: always
-    ports:
-      - "8080:8080"
+    #    ports:
+    #      - "8080:8080"
     #    depends_on:
     #      - db-mysql
     environment:
@@ -44,16 +48,51 @@ services:
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    expose:
+      - 8080
+    networks:
+      - app-tier
 
   frontend:
     container_name: frontend-react
-    build: ./frontend
-    ports:
-      - "3000:3000"
+    build:
+      context: ./frontend
+    #    ports:
+    #      - "3000:3000"
+    environment:
+      - REACT_APP_BACKEND_URL= http://voilio.site
     volumes:
       - ./frontend/:/frontend
       - build_folder:/frontend/build
       - ./frontend/node_modules/:/frontend/node_modules
+    networks:
+      - app-tier
+    stdin_open: true
+    tty: true
+
+  nginx:
+    image: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes: # 호스트 디렉터리의 파일과 도커 컨테이너의 파일을 매핑한다.
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - build_folder:/var/www/frontend
+      - ./nginx/log:/var/log/nginx
+    depends_on:
+      - backend
+      - frontend
+    expose:
+      - 80
+    restart: always
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge
 
   nginx:
     image: nginx
