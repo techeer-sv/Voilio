@@ -94,6 +94,17 @@ networks:
   app-tier:
     driver: bridge
 
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes: # 호스트 디렉터리의 파일과 도커 컨테이너의 파일을 매핑한다.
+      - build_folder:/var/www/frontend
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+
 volumes:
   mysql-data:
   build_folder:
