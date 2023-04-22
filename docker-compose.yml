@@ -48,6 +48,8 @@ services:
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    expose:
+      - 8080
     networks:
       - app-tier
 
@@ -62,7 +64,7 @@ services:
     volumes:
       - ./frontend/:/frontend
       - build_folder:/frontend/build
-    #      - ./frontend/node_modules/:/frontend/node_modules
+      - ./frontend/node_modules/:/frontend/node_modules
     networks:
       - app-tier
     stdin_open: true
