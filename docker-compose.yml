@@ -58,7 +58,7 @@ services:
     #    ports:
     #      - "3000:3000"
     environment:
-      - REACT_APP_BACKEND_URL= http://localhost
+      - REACT_APP_BACKEND_URL= http://voilio.site
     volumes:
       - ./frontend/:/frontend
       - build_folder:/frontend/build
