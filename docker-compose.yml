@@ -71,6 +71,11 @@ services:
     stdin_open: true
     tty: true
 
+    networks:
+      - app-tier
+    stdin_open: true
+    tty: true
+
   nginx:
     image: nginx
     build:
@@ -109,3 +114,4 @@ networks:
 volumes:
   mysql-data:
   build_folder:
+  
