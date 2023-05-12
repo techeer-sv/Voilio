@@ -49,16 +49,14 @@
 
 ## 💻 System Architecture
 
-![VoilioArchitecturePOC (1).png](..%2FDownloads%2FVoilioArchitecturePOC%20%281%29.png)
-
+![VoilioArchitecturePOC (1)](https://github.com/techeer-sv/Voilio/assets/76465887/344fb8c9-e275-48e5-8708-d6540e965687)
 ## 📗 API
 
-![스크린샷 2023-04-26 오후 9.06.36.png](..%2F..%2F..%2Fvar%2Ffolders%2F50%2Fbqg27l8s0qlcw2d7g3bkt9p40000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_xB84Cj%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-04-26%20%EC%98%A4%ED%9B%84%209.06.36.png)
-
+<img width="884" alt="스크린샷 2023-05-09 오후 11 21 11" src="https://github.com/techeer-sv/Voilio/assets/76465887/4409c60b-e742-4724-91cb-8c01bf7903b2">
 
 ## 🚀 How to Start
 
-### 1. Clone Repository
+### 1. Clone Repository 
 
 ```
 git clone --recursive https://github.com/techeer-sv/Voilio.git
