@@ -66,15 +66,6 @@ services:
       - ./frontend/:/frontend
       - build_folder:/frontend/build
       - ./frontend/node_modules/:/frontend/node_modules
-    networks:
-      - app-tier
-    stdin_open: true
-    tty: true
-
-    networks:
-      - app-tier
-    stdin_open: true
-    tty: true
 
   nginx:
     image: nginx
@@ -96,21 +87,27 @@ services:
     networks:
       - app-tier
 
-#   nginx:
-#     image: nginx
-#     ports:
-#       - "80:80"
-#     volumes: # 호스트 디렉터리의 파일과 도커 컨테이너의 파일을 매핑한다.
-#       - build_folder:/var/www/frontend
-#     depends_on:
-#       - backend
-#       - frontend
-#     restart: always
-    
+  controller:
+    image: ngrinder/controller:3.5.5
+    ports:
+      - "9000:80"
+      - "16001:16001"
+      - "12000-12009:12000-12009"
+    networks:
+      - app-tier
+
+  agent:
+    image: ngrinder/agent:3.5.5
+    links:
+       - controller
+    networks:
+      - app-tier
+
+
 networks:
   app-tier:
     driver: bridge
-    
+
 volumes:
   mysql-data:
   build_folder:
