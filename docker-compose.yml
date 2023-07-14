@@ -52,7 +52,8 @@ services:
     expose:
       - 8080
     networks:
-      - app-tier
+       app-tier:
+         ipv4_address: 172.16.1.5
 
   frontend:
     container_name: frontend-react
@@ -99,16 +100,26 @@ services:
   agent:
     image: ngrinder/agent:3.5.5
     links:
-       - controller
+      - controller
     networks:
       - app-tier
 
+  redis_container:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+      - 6379:6379
+    networks:
+      - app-tier
 
 networks:
   app-tier:
-    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.1.0/24
 
 volumes:
   mysql-data:
   build_folder:
-  
+
